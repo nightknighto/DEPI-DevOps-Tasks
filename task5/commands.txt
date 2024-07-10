@@ -1,0 +1,10 @@
+docker commit -c "CMD java -jar /var/app/spring-petclinic/target/*.jar" spring_container myspring:latest
+
+docker tag myspring nightknighto/myspring
+
+docker save nightknighto/myspring -o images.tar
+
+docker login
+
+docker push nightknighto/myspring
+
