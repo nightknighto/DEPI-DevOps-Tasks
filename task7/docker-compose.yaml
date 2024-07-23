@@ -1,0 +1,31 @@
+services:
+  database:
+    image: mysql:8
+    networks:
+      - clinic
+    environment:
+      - MYSQL_DATABASE=petclinic
+      - MYSQL_PASSWORD=petclinic
+      - MYSQL_USER=petclinic
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_ROOT_PASSWORD=
+    volumes:
+      - db_vol:/var/lib/mysql
+  
+  app:
+    image: spring
+    environment:
+      - SPRING_PROFILES_ACTIVE=mysql
+      - MYSQL_URL=jdbc:mysql://database/petclinic
+    ports:
+      - 8080:8080
+    networks:
+      - clinic
+    depends_on:
+      - database
+
+networks:
+  clinic:
+
+volumes:
+  db_vol:

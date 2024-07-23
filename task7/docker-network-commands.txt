@@ -1,0 +1,15 @@
+docker network create clinic
+
+docker run --rm -d --name database --net clinic \
+-e MYSQL_DATABASE=petclinic \
+-e MYSQL_PASSWORD=petclinic \
+-e MYSQL_USER=petclinic \
+-e MYSQL_ALLOW_EMPTY_PASSWORD=true \
+-e MYSQL_ROOT_PASSWORD= \
+mysql:8
+
+
+docker run --rm -d \
+-e SPRING_PROFILES_ACTIVE=mysql \
+-e MYSQL_URL=jdbc:mysql://database/petclinic \
+--net clinic -p 8080:8080 spring

@@ -1,4 +1,0 @@
-docker volume create myvol
-docker run --rm -itd -p 3001:80 --name server -v myvol:/usr/share/nginx/html nginx
-docker inspect myvol
-nano /var/snap/docker/common/var-lib-docker/volumes/myvol/_data/index.html
