@@ -1,0 +1,12 @@
+services:
+  app:
+    image: nightknighto/spring-petclinic
+    ports:
+      - 8080:8080
+    networks:
+      - clinic
+    depends_on:
+      - database
+
+networks:
+  clinic:
