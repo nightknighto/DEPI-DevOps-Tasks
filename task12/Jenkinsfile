@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        // This stage is automatic since we are using Jenkinsfile from SCM
+        // stage('Checkout') {
+        //     steps {
+        //         git branch: 'main', credentialsId: '5048ac3b-d10b-4e12-87c3-23b1f531f326', url: 'https://github.com/nightknighto/spring-petclinic'
+        //     }
+        // }
+        stage('Authenticate') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: '7313fbea-99bb-4679-aa07-6a877c716e3b', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    sh '''
+                    echo $PASSWORD | docker login -u $USERNAME --password-stdin
+                    '''
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                sh '''
+                docker build -t nightknighto/spring-petclinic:jenkins-${BUILD_ID} . -f Dockerfile-multi
+                '''
+            }
+        }
+        stage('Push') {
+            steps {
+                sh '''
+                docker push nightknighto/spring-petclinic:jenkins-${BUILD_ID}
+                '''
+            }
+        }
+    }
+}

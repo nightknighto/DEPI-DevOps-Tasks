@@ -16,5 +16,6 @@
 
 ## Jenkins
 ### [Task 11: Jenkins first job](task11/README.md)
+### [Task 12: Jenkins Pipeline](task12/README.md)
 
-### [Task :](task/README.md)
+<!-- ### [Task :](task/README.md) -->
