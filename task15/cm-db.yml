@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-petclinic-db-config
+data:
+  MYSQL_ROOT_PASSWORD: ""
+  MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+  MYSQL_DATABASE: "petclinic"
+  MYSQL_USER: "petclinic"
+  MYSQL_PASSWORD: "petclinic"
+  

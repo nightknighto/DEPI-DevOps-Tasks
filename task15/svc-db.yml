@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-petclinic-db-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: spring-petclinic
+    type: db
+  ports:
+  - port: 3306

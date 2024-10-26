@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-petclinic-api-config
+data:
+  MYSQL_URL: jdbc:mysql://spring-petclinic-db-svc/petclinic
+  SPRING_PROFILES_ACTIVE: mysql
